@@ -1,0 +1,9 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<appSettings xdt:Transform="InsertIfMissing">
+	</appSettings>
+	<appSettings>
+		<add key="PimConnector.ApiKey" value="" xdt:Transform="Insert"/>
+		<add key="PimConnector.ImageUrl" value="https://v37.cloud1.structpim.com/umbraco/api/media/GetMedia?id=" xdt:Transform="Insert"/>
+	</appSettings>
+</configuration>

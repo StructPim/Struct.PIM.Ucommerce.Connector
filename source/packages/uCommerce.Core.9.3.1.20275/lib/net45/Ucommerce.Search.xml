@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ucommerce.Search</name>
+    </assembly>
+    <members>
+        <member name="T:Ucommerce.Search.Extensions.IndexDefinitionExtensions">
+            <summary>
+            A fluent API extending IIndexDefinition.
+            Makes it easy to express the shape on an index in terms of fields and facets.
+            Field names, Id field name and facets can be expressed statically typed using a lambda,
+            or using strings.
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Field``2(Ucommerce.Search.IIndexDefinition{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},Ucommerce.Search.IndexOptions)">
+            <summary>
+            Defines a field in an index using a getter and IndexOptions
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Field``2(Ucommerce.Search.IIndexDefinition{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a field in an index using a getter
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Field``1(Ucommerce.Search.IIndexDefinition{``0},System.String)">
+            <summary>
+            Defines a field in an index using the name of the field
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Field``1(Ucommerce.Search.IIndexDefinition{``0},System.String,Ucommerce.Search.IndexOptions)">
+            <summary>
+            Defines a field in an index using the name of the field and IndexOptions
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Field``1(Ucommerce.Search.IIndexDefinition{``0},System.String,Ucommerce.Search.IndexOptions,System.Type)">
+            <summary>
+            Defines a field in an index using the name of the field, IndexOptions and type
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Facet``2(Ucommerce.Search.IIndexDefinition{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a facet in an index using a getter
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Facet``2(Ucommerce.Search.IIndexDefinition{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},Ucommerce.Search.Facets.FacetOptions)">
+            <summary>
+            Defines a facet in an index using a getter and FacetOptions
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Facet``1(Ucommerce.Search.IIndexDefinition{``0},System.String)">
+            <summary>
+            Defines a facet in an index using its name
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.Facet``1(Ucommerce.Search.IIndexDefinition{``0},System.String,Ucommerce.Search.Facets.FacetOptions)">
+            <summary>
+            Defines a facet in an index using its name and FacetOptions
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.IdField``1(Ucommerce.Search.IIndexDefinition{``0},System.String)">
+            <summary>
+            Defines the ID field (required) of the index by the field name
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.IdField``1(Ucommerce.Search.IIndexDefinition{``0},System.Linq.Expressions.Expression{System.Func{``0,System.String}})">
+            <summary>
+            Defines the ID field (required) of the index using a getter
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.PricesField``2(Ucommerce.Search.IIndexDefinition{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines the ID field (required) of the index using a getter
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.IndexDefinitionExtensions.PricesField``1(Ucommerce.Search.IIndexDefinition{``0},System.String)">
+            <summary>
+            Defines the ID field (required) of the index by the field name
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.ExpressionExtensions.TryEvaluateExpressionOrDefault``1(System.Linq.Expressions.Expression,``0@)">
+            <summary>
+            Compile and invoke an expression without a root expression. A return value indicates whether the operation succeeded.
+            </summary>
+            <param name="expression">An expression.</param>
+            <param name="output">Returns the evaluated value, or the default value for the type</param>
+            <returns>true if <paramref name="expression"/> evaluated; otherwise, false.</returns>
+            <typeparam name="TReturn">The type of the return value. Use <see cref="T:System.Object"/> if it is not known.</typeparam>
+            <exception cref="T:System.InvalidOperationException"> Thrown when expression compiling fails</exception>
+            <exception cref="T:System.Reflection.TargetInvocationException"> Thrown when expression invoking fails</exception>
+            <remarks>All exceptions are caught, and false is returned.</remarks>
+        </member>
+        <member name="M:Ucommerce.Search.Extensions.ExpressionExtensions.EvaluateExpressionOrDefault``1(System.Linq.Expressions.Expression)">
+            <summary>
+            Compile and invoke an expression without a root expression.
+            </summary>
+            <param name="expression">An expression.</param>
+            <returns>Returns the value of the sub-expression .</returns>
+            <typeparam name="TReturn">The type of the return value. Use <see cref="T:System.Object"/> if it is not known.</typeparam>
+            <remarks>
+            If invoking the same expression multiple times, use <see cref="!:CompileSubExpression(LambdaExpression, Expression)"/> once,
+            then invoke the delegate (for efficiency).
+            </remarks>
+        </member>
+        <member name="T:Ucommerce.Search.Facets.FacetOptions">
+            <summary>
+            Use this class to specify options for a facet.
+            </summary>
+        </member>
+        <member name="P:Ucommerce.Search.Facets.FacetOptions.HasMultipleValue">
+            <summary>
+            If the field has more than one value, (fx. a product can have more than one category), this field should be <c>true</c>
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Ucommerce.Search.Facets.FacetOptions.Ranges" -->
+        <member name="P:Ucommerce.Search.Facets.FacetOptions.FacetFieldType">
+            <summary>
+            The type of the field for the range facet. Fx.: int, long etc.
+            </summary>
+        </member>
+        <member name="T:Ucommerce.Search.IFetcher`1">
+            <summary>
+            A fetcher gets data from a sql database or elsewhere.
+            </summary>
+            <typeparam name="T">A type that represents a product, category, catalog or something else.</typeparam>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ucommerce.Search.IFetcher`1.InBatches(System.Collections.Generic.IEnumerable{System.Guid},System.UInt32)" -->
+        <member name="M:Ucommerce.Search.Indexers.IBatchIndexer.IndexInBatches``1(System.Action{Ucommerce.Search.IIndexWriter,System.Collections.Generic.List{``0}},System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            
+            </summary>
+            <param name="indexAction"></param>
+            <param name="ids"></param>
+            <param name="indexUri"></param>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Ucommerce.Search.ISearch`1">
+            <summary>
+            Allows for LINQ-like, albeit in comparison very limited, querying into an index, regardless
+            of the search engine chosen.
+            As with LINQ, queries are composable until the point ToList() is called. Then the query is
+            run and the results returned.
+            IRawSearch only allows determining the order and the subset of query results to return.
+            On top of IRawSearch, ISearch adds the Where method to allow filtering.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Ucommerce.Search.ISearch`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Limits the result by matching individual fields with values.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+            <example>
+             Examples of the operations supported:
+            <code>
+            index.Find().Where(product => product.Categories.Contains(selectedCategory));
+            index.Find().Where(product => product.Name == "Shiny New Glasses");
+            </code>
+            </example>
+        </member>
+        <member name="T:Ucommerce.Search.IIndexDefinition`1">
+            <summary>
+            An index definition represent the fields of an index and their settings.
+            The definition uses the document class at indexing time, even if later,
+            someone queries the index with another type than 'T'.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Ucommerce.Search.IIndexDefinition`1.Fields">
+            <summary>
+            'Fields' stores the information about which fields should be indexed.
+            They can also be used to exclude a field from the index. 
+            </summary>
+        </member>
+        <member name="P:Ucommerce.Search.IIndexDefinition`1.Facets">
+            <summary>
+            'Facets' stores the information about individual facets, fx. ranges 
+            </summary>
+        </member>
+        <member name="P:Ucommerce.Search.IIndexDefinition`1.FieldTypes">
+            <summary>
+            'FieldTypes' stores the type of the value, for the user defined fields
+            </summary>
+        </member>
+        <member name="P:Ucommerce.Search.IIndexDefinition`1.IdFieldName">
+            <summary>
+            To support efficient batch indexing, each index definition needs an Id field.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Ucommerce.Search.IIndexWriter" -->
+        <member name="M:Ucommerce.Search.IIndexWriter.AddBatch(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Adds a batch of documents to the index.
+            The physical index will only be committed to storage at the end of each operation to guarantee 
+            fast writes.
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.IIndexWriter.DeleteBatch(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Deletes a batch of documents from the index.
+            The physical index will only be committed to storage at the end of each operation to guarantee 
+            fast writes.
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.IIndexWriter.UpdateBatch(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Updates a batch of documents in the index.
+            The physical index will only be committed to storage at the end of each operation to guarantee 
+            fast writes.
+            </summary>
+        </member>
+        <member name="T:Ucommerce.Search.IIndex`1">
+            <summary>
+            Allows the user to access a logical index, that may have many physical representations.
+            An example could be a sharded index or several indexes that store the same data, but in different languages.
+            The user of this interface does not have to worry about where on disk the index is stored allowing them
+            to use a simpler, logical name. 
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Ucommerce.Search.IIndex`1.Fetcher">
+            <summary>
+            The fetcher used by the index.
+            It is used for optimizing indexing by grouping together indexes with the same fetcher,
+            thus sharing data between indexes.
+            </summary>
+        </member>
+        <member name="P:Ucommerce.Search.IIndex`1.Definition">
+            <summary>
+            Get's the definition for the index, that is, the fields and ways fields are
+            analyzed, indexed and stored.
+            </summary>
+        </member>
+        <member name="M:Ucommerce.Search.IIndex`1.Find(System.Globalization.CultureInfo)">
+            <summary>
+            Returns an ISearch that can find documents of the same type used at indexing time.
+            </summary>
+            <param name="culture">If no culture is provided it uses the one set by
+            ILocalizationContext.CurrentCulture. </param>
+            <returns>ISearch that supports Where, Count and other query methods.</returns>
+        </member>
+        <member name="M:Ucommerce.Search.IIndex`1.Find``1(System.Globalization.CultureInfo)">
+            <summary>
+            Returns an ISearch that can find documents of another type that contains a subset of the type used at index.
+            </summary>
+            <param name="culture"></param>
+            <typeparam name="TProjection"></typeparam>
+            <returns>ISearch that supports Where, Count and other query methods.</returns>
+        </member>
+        <member name="M:Ucommerce.Search.IIndex`1.FindRaw(System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns an IRawSearch that can find documents of the same type used at indexing time.
+            </summary>
+            <param name="query"></param>
+            <param name="culture"></param>
+            <returns>ISearch that supports Where, Count and other query methods.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ucommerce.Search.IIndex`1.FindRaw``1(System.Object,System.Globalization.CultureInfo)" -->
+        <member name="T:Ucommerce.Search.IIndexAutomatically">
+            <summary>
+            Marker used to circumvent Castle Windsor's inability to return collections of open generic types.
+            </summary>
+        </member>
+        <member name="T:Ucommerce.Search.IRawSearch`1">
+            <summary>
+            Allows for LINQ-like, albeit in comparison very limited, querying into an index, regardless
+            of the search engine chosen.
+            As with LINQ, queries are composable until the point ToList() is called. Then the query is
+            run and the results returned.
+            IRawSearch only allows determining the order and the subset of query results to return.
+            On top of IRawSearch, ISearch adds the Where method to allow filtering.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.Count">
+            <summary>
+            Returns the number of elements the search finds
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Order the result set by one of the stored fields.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="selector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.OrderByDescending``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Order the result set descending by one of the stored fields.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="selector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.Skip(System.UInt32)">
+            <summary>
+            Skips the first given number of T's in the result set. Like OFFSET in SQL.
+            </summary>
+            <param name="skip"></param>
+            <returns>Number of elements to skip</returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.Take(System.UInt32)">
+            <summary>
+            Limits the result set to a given number of T's. Like LIMIT in SQL.
+            </summary>
+            <param name="take">Number of elements to return</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.PriceGroup(System.String)">
+            <summary>
+            Sets the current price group name
+            </summary>
+            <param name="priceGroup">The current price gorup name</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.ToList">
+            <summary>
+            Executes the search and returns the results in a list.
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ucommerce.Search.IRawSearch`1.ToFacets(System.Boolean)" -->
+        <member name="M:Ucommerce.Search.IRawSearch`1.First">
+            <summary>
+            Executes the search and returns the first element
+            </summary>
+            <returns>The first element</returns>
+            <exception cref="T:System.InvalidOperationException">Throws an exception when there are no hits</exception>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.FirstOrDefault">
+            <summary>
+            Executes the search and returns the first element, or a default value if there were no hits
+            </summary>
+            <returns><see cref="!:default(T)"/> if there were no this, otherwise, the first element</returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.Single">
+            <summary>
+            Executes search and returns the only element of a sequence, or a default value if the sequence is empty; this method throws an exception if there is more than one element in the sequence.
+            </summary>
+            <returns>The first element</returns>
+            <exception cref="T:System.InvalidOperationException">Throws an exception if there were no hits, or more than one hits</exception>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.SingleOrDefault">
+            <summary>
+            Executes the search and returns the only element, and throws an exception if there is not exactly one element in the sequence.
+            </summary>
+            <returns><see cref="!:default(T)"/> if there were no this, otherwise, the first element</returns>
+            <exception cref="T:System.InvalidOperationException">Throws an exception if there were more than one hits</exception>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.Where(Ucommerce.Search.Facets.FacetDictionary)">
+            <summary>
+            Limits the result by selecting the elements that match a facet value
+            </summary>
+            <param name="facets">Facet values</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ucommerce.Search.IRawSearch`1.ToSuggestions(System.String,System.String,System.Boolean)">
+            <summary>
+            Get suggestions for the given field and value. If <paramref name="fuzzySuggestions"/> is set to true, it will also search for suggestions for misspelled words.
+            </summary>
+            <remarks>Fuzzy suggestions are considerable slower</remarks>
+            <param name="field">The field for which to find suggestions</param>
+            <param name="value">The value for look up</param>
+            <param name="fuzzySuggestions">If true, fuzzy suggestions will be searched</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ucommerce.Search.Slugs.IUrlService">
+            <summary>
+            Generates links according to the built in url scheme that support links to
+            
+            * a catalog
+                http://avenueclothing.com/demo-store
+            
+            * a category or sub category
+                http://avenueclothing.com/demo-store/c/tops/formal
+            
+            * a product
+                http://avenueclothing.com/demo-store/p/polo-ralph-lauren
+            
+            * a product in one or more categories
+                http://avenueclothing.com/demo-store/p/tops/formal/polo-ralph-lauren
+            
+            * a product and a variant
+                http://avenueclothing.com/demo-store/v/polo-ralph-lauren/16-inch-collar-white
+            
+            * a product and a variant inside one or more categories
+                http://avenueclothing.com/demo-store/v/tops/formal/polo-ralph-lauren/16-inch-collar-white
+            
+            </summary>
+        </member>
+    </members>
+</doc>

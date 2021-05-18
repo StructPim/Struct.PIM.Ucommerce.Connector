@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+	<metadata>
+		<id>StructPimDependencies</id>
+		<version>1.0.0</version>
+		<authors>Struct A/S</authors>
+		<owners>Struct A/S</owners>
+		<projectUrl>http://struct.dk</projectUrl>
+		<description>Installs dependencies for Struct PIM integration</description>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<releaseNotes></releaseNotes>
+		<copyright>Copyright 2021</copyright>
+		<tags>umbraco, umbraco-cms</tags>
+	</metadata>
+	<files>
+		<file src="StructPim\**" target="content\StructPim" />
+		<file src="Apps\**" target="content\Umbraco\Ucommerce\Apps" />
+		<file src="web.config.install.xdt" target="content" />
+		<file src="web.config.uninstall.xdt" target="content" />
+	</files>
+</package>
