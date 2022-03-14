@@ -15,7 +15,7 @@ namespace Struct.PIM.Ucommerce.Connector.Integration
         {
             public static string DefaultCategoryDefinitionName = "Default Category Definition";
             public static string DefaultProductRelationTypeName = "Default";
-            public static string DbConnectionString = "server=struct02;database=struct.pim.ucommerce.demo;user id=struct.pim.ucommerce.demo;password='kAqc2hyGNg8XyYWZ'";
+            public static string DbConnectionString = "Server=.;Database=struct.pim.ucommerce.demo;Integrated Security=true";
             public static string IndexProductsApiUrl = "https://localhost:44399/Ucommerceapi/search/index";
             public static string IndexCategoriesApiUrl = "https://localhost:44399/Ucommerceapi/search/index";
             public static string IndexingApiKey = "e915987e-630b-422d-ae39-093d0e0b2e62";

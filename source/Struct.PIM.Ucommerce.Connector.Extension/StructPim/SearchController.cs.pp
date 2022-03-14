@@ -53,8 +53,7 @@ namespace $rootnamespace$.StructPim
 
         private void Index<T>(List<Guid> uids) where T : global::Ucommerce.Search.Models.Model
         {
-            ObjectFactory.Instance.Resolve<IBatchIndexer>().IndexInBatches<T>(
-                (indexWriter, localizedItems) => indexWriter.UpdateBatch(localizedItems), uids);
+            ObjectFactory.Instance.Resolve<IBatchIndexer>().UpsertInBatches(typeof(T), uids);
         }
     }
 }
