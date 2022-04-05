@@ -13,7 +13,7 @@ The connector can run as a scheduled job with Struct.PIM.Ucommerce.Connector or 
    - To implement a new mapper, implement one of the interfaces: IProductMapper, IVariantMapper or ICategoryMapper and register the mapper in "Settings.cs".
    - See: "Struct.PIM.Ucommerce.Connector.Integration\StructPim\Mappers\" for examples.
 3. Install the "Struct.PIM.Ucommerce.Connector.Extension" NuGet package in Ucommerce.
-    - To create and install the NuGet package run "created nuget pack StructPimDependencies.nuspec" and install the package from a local package source.
+    - To create and install the NuGet package run "nuget pack StructPimDependencies.nuspec" and install the package from a local package source.
    - The package adds new services to the "StructPim" directory and adds new configurations to Web.config. The new configurations are prefixed with "PimConnector".
    - Beware: if the "Umbraco" directory gets included in the project it may lead to the following error: "The type 'Ucommerce.Web.Shell.Masterpages.MasterPageShell' is ambiguous". To fix the issue, exclude the "Umbraco" directory from the VS project.
 4. Update the configuration in App.config/Web.config and "Struct.PIM.Ucommerce.Connector.Integration\Settings.cs".
