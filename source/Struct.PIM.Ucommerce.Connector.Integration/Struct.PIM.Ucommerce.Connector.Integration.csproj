@@ -35,13 +35,13 @@
       <HintPath>..\..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Struct.PIM.Api.Client, Version=3.2.0.100, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Struct.PIM.Api.Client.3.2.0\lib\netstandard2.0\Struct.PIM.Api.Client.dll</HintPath>
+    <Reference Include="Struct.PIM.Api.Client, Version=3.9.10.100, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Struct.PIM.Api.Client.3.9.10\lib\netstandard2.0\Struct.PIM.Api.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Struct.PIM.Api.Models, Version=3.2.0.100, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Struct.PIM.Api.Models.3.2.0\lib\netstandard2.0\Struct.PIM.Api.Models.dll</HintPath>
+    <Reference Include="Struct.PIM.Api.Models, Version=3.9.10.100, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Struct.PIM.Api.Models.3.9.10\lib\netstandard2.0\Struct.PIM.Api.Models.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

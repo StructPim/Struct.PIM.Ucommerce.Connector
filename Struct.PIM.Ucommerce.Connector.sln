@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Struct.PIM.Ucommerce.Connec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Struct.PIM.Ucommerce.Connector.Integration", "source\Struct.PIM.Ucommerce.Connector.Integration\Struct.PIM.Ucommerce.Connector.Integration.csproj", "{83290A4E-B7E0-4148-BCCA-AF775483F097}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Struct.PIM.Ucommerce.Connector", "source\Struct.PIM.Ucommerce.Connector\Struct.PIM.Ucommerce.Connector.csproj", "{AF0C601D-E391-4339-9EA0-AF01F84CA519}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Struct.PIM.Ucommerce.Connector.Extension", "source\Struct.PIM.Ucommerce.Connector.Extension\Struct.PIM.Ucommerce.Connector.Extension.csproj", "{79F4CD3C-1712-4444-9CA4-ACF13B3ACAA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Struct.PIM.Ucommerce.Connector", "source\Struct.PIM.Ucommerce.Connector\Struct.PIM.Ucommerce.Connector.csproj", "{AF0C601D-E391-4339-9EA0-AF01F84CA519}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{83290A4E-B7E0-4148-BCCA-AF775483F097}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83290A4E-B7E0-4148-BCCA-AF775483F097}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83290A4E-B7E0-4148-BCCA-AF775483F097}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79F4CD3C-1712-4444-9CA4-ACF13B3ACAA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79F4CD3C-1712-4444-9CA4-ACF13B3ACAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79F4CD3C-1712-4444-9CA4-ACF13B3ACAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79F4CD3C-1712-4444-9CA4-ACF13B3ACAA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0C601D-E391-4339-9EA0-AF01F84CA519}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
