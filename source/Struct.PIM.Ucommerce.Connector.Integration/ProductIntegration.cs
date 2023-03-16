@@ -269,9 +269,10 @@ namespace Struct.PIM.Ucommerce.Connector.Integration
             _ucommerceBroker.UpsertProductRelations(relations);
         }
 
-        public void DeleteProducts(List<int> productIds)
+        public void DeleteProducts(List<int> pimProductIds)
         {
-            _ucommerceBroker.DeleteProducts(productIds);
+            var ucProductIdByPimId = _ucommerceBroker.GetProductIdByPimId(pimProductIds);
+            _ucommerceBroker.DeleteProducts(ucProductIdByPimId.Values.ToList());
         }
     }
 }

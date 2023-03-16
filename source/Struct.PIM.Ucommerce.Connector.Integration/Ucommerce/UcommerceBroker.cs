@@ -61,6 +61,29 @@ namespace Struct.PIM.Ucommerce.Connector.Integration.Ucommerce
             }
         }
 
+        public Dictionary<int, int> GetCategoryIdByPimId(List<int> pimCategoryIds)
+        {
+            using (var connection = DBUtility.GetOpenConnection())
+            {
+                BulkOperationsHelper.InsertIntoTempTable(
+                    connection,
+                    "struct",
+                    "#tmp",
+                    new Dictionary<string, string> { { "PimID", "nvarchar(50)" } },
+                    pimCategoryIds.Select(x => new { PimID = x }).ToList()
+                );
+
+                return connection.Query(@"
+                    SELECT [Value] AS PimID, [CategoryId]
+                    FROM [uCommerce_CategoryProperty] cp
+                    JOIN [uCommerce_DefinitionField] df on cp.DefinitionFieldId = df.DefinitionFieldId
+                    JOIN #tmp as t on t.PimID = [Value]
+                    WHERE df.[Name] = 'PimID' AND Deleted = 0").ToDictionary(
+                    row => int.Parse((string)row.PimID),
+                    row => (int)row.CategoryId);
+            }
+        }
+
         public Dictionary<string, int> GetProductDefinitionIdByName()
         {
             using (var connection = DBUtility.GetOpenConnection())
@@ -624,10 +647,11 @@ namespace Struct.PIM.Ucommerce.Connector.Integration.Ucommerce
                 {
                     connection.Execute(@"
                         BEGIN TRANSACTION;
+                        DELETE FROM [uCommerce_CategoryProductRelation] WHERE [CategoryId] IN @categoryIds;
                         DELETE FROM [uCommerce_CategoryDescription] WHERE [CategoryId] IN @categoryIds;
                         DELETE FROM [uCommerce_CategoryProperty] WHERE [CategoryId] IN @categoryIds;
                         DELETE FROM [uCommerce_Category] WHERE [CategoryId] IN @categoryIds;
-                        COMMIT TRANSACTION;", new {categoryIds = categoryIdBatch });
+                        COMMIT TRANSACTION;", new { categoryIds = categoryIdBatch });
                 }
             }
         }

@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatagoryIntegration.cs" />
+    <Compile Include="CategoryIntegration.cs" />
     <Compile Include="ProductIntegration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructPim\Helpers\AttributeRenderHelper.cs" />

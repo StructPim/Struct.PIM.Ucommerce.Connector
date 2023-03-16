@@ -18,7 +18,7 @@ namespace Struct.PIM.Ucommerce.Connector
 
             // Create or update categories
             var pimCategoryIds = pimBroker.GetUpdatedCategoriesInCatalogue(Settings.Pim.Catalogues.InternalHierarchy, lastUpdate).Select(x => x.Id).ToList();
-            var catalogueIntegration = new CatagoryIntegration(pimBroker, ucommerceBroker);
+            var catalogueIntegration = new CategoryIntegration(pimBroker, ucommerceBroker);
             catalogueIntegration.CreateOrUpdateCategories(pimCategoryIds);
             //catalogueIntegration.DeleteCategories(pimCategoryIds);
 

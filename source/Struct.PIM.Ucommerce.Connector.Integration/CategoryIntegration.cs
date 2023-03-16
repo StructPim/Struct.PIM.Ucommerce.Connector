@@ -10,13 +10,13 @@ using Struct.PIM.Ucommerce.Connector.Integration.Ucommerce.Models;
 
 namespace Struct.PIM.Ucommerce.Connector.Integration
 {
-    public class CatagoryIntegration
+    public class CategoryIntegration
     {
         private readonly PimBroker _pimBroker;
         private readonly UcommerceBroker _ucommerceBroker;
         private readonly List<string> _cultureCodes = Settings.CultureCodes;
 
-        public CatagoryIntegration(PimBroker pimBroker, UcommerceBroker ucommerceBroker)
+        public CategoryIntegration(PimBroker pimBroker, UcommerceBroker ucommerceBroker)
         {
             _pimBroker = pimBroker;
             _ucommerceBroker = ucommerceBroker;
@@ -35,13 +35,21 @@ namespace Struct.PIM.Ucommerce.Connector.Integration
 
             // Create categories top-down: Parent categories needs to be created before child categories
             var pimCategoriesByParentId = pimCategories.ToLookup(x => x.ParentId);
-            var pimCategoryChildren = pimCategoriesByParentId[null].ToList();
 
+            // Start with the top-most nodes (parent=null or parent not in update)
+            var pimCategoryIdSet = pimCategories.Select(x => x.Id).ToHashSet();
+            var pimCategoryChildren = pimCategoriesByParentId
+                .Where(x => x.Key == null || !pimCategoryIdSet.Contains(x.Key.Value))
+                .SelectMany(x => x)
+                .ToList();
+            
             using (var transaction = new TransactionScope())
             {
                 while (pimCategoryChildren.Any())
                 {
                     CreateOrUpdateCategories(pimCategoryChildren, ucCategoryDefinitionId, ucProductCatalogIdByName, ucCategoryIdByPimId);
+
+                    // Proceed to the next layer in the tree
                     pimCategoryChildren = pimCategoryChildren.SelectMany(x => pimCategoriesByParentId[x.Id]).ToList();
                 }
 
@@ -60,7 +68,7 @@ namespace Struct.PIM.Ucommerce.Connector.Integration
 
         /// <summary>
         /// Create or update categories
-        /// Precondtion: All parent categories exists
+        /// Precondition: All parent categories exist
         /// </summary>
         private void CreateOrUpdateCategories(List<UcCategoryModel> pimCategories, int ucCategoryDefinitionId,
             Dictionary<string, int> ucProductCatalogIdByName, Dictionary<int, int> ucCategoryIdByPimId)
@@ -177,9 +185,10 @@ namespace Struct.PIM.Ucommerce.Connector.Integration
             _ucommerceBroker.UpsertCategoryDescriptions(categoryDescriptions);
         }
 
-        public void DeleteCategories(List<int> categoryIds)
+        public void DeleteCategories(List<int> pimCategoryIds)
         {
-            _ucommerceBroker.DeleteCategories(categoryIds);
+            var ucToPimCategoryId = _ucommerceBroker.GetCategoryIdByPimId(pimCategoryIds);
+            _ucommerceBroker.DeleteCategories(ucToPimCategoryId.Values.ToList());
         }
     }
 }

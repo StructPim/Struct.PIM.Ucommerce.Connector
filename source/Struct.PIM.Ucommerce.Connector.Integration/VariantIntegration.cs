@@ -208,9 +208,10 @@ namespace Struct.PIM.Ucommerce.Connector.Integration
             _ucommerceBroker.UpsertProductLocalizedProperties(productDescriptionProperties);
         }
 
-        public void DeleteVariants(List<int> variantIds)
+        public void DeleteVariants(List<int> pimVariantIds)
         {
-            _ucommerceBroker.DeleteProducts(variantIds);
+            var ucProductIdByPimId = _ucommerceBroker.GetProductIdByVariantPimId(pimVariantIds);
+            _ucommerceBroker.DeleteProducts(ucProductIdByPimId.Values.ToList());
         }
     }
 }
